@@ -24,4 +24,8 @@ $(function(){
 $('img').load(function(){
 	console.log('success');//加载成功后做的事
 });
-//
+//禁用a的链接
+href="return false;"或href="javascript;"
+$().live('click',function(e){
+  e.preventDefault();
+  });
