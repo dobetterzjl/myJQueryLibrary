@@ -22,7 +22,7 @@ function IJquery(arg){
 
 		break;
 		case "object":
-
+			this.elements.push(arg);
 		break;
 		case "function":
 			window.addEventListener('load',arg,false);
@@ -34,11 +34,13 @@ IJquery.prototype.click=function(fn){
 		for(var i=0;i<this.elements.length;i++){
 				this.elements[i].addEventListener('click',fn,false);
 			}
+			return this;
 		};
 IJquery.prototype.mouseover=function(fn){
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].addEventListener('mouseover',fn,false);
 	}
+	return this;
 }
 function $(arg){
 	return new IJquery(arg);
