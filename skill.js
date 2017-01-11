@@ -29,3 +29,8 @@ href="return false;"或href="javascript;"
 $().live('click',function(e){
   e.preventDefault();
   });
+//与其他的JavaScript类库冲突解决方案
+$(document).ready(function(){
+	var $q=jQuery.noConflict();
+	$jq('#id').show();
+});
