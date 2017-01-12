@@ -27,7 +27,6 @@ function IJquery(arg){
 		case "function":
 			window.addEventListener('load',arg,false);
 		break;
-	
 }
 }
 IJquery.prototype.click=function(fn){
@@ -39,6 +38,33 @@ IJquery.prototype.click=function(fn){
 IJquery.prototype.mouseover=function(fn){
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].addEventListener('mouseover',fn,false);
+	}
+	return this;
+}
+IJquery.prototype.on=function(type,selector,fn){
+	if(selector && typeof selector=='string'){//进行事件委托（代理）
+		for(var i=0;i<this.elements.length;i++){
+			this.elements[i].addEventListener(type,function(e){
+				var prefix=selector.charAt(0);
+				switch(prefix){
+					case'#':
+					break;
+					case'.':
+						if(e.target.className==selector.substring(1)){
+							fn.call(e.target);
+						}
+					break;
+					default:
+					break;
+				}
+			},false)
+		}
+
+	} else if(selector && typeof selector=='function'){
+		 fn = selector;
+	}
+	for(var i=0; i<this.elements.length;i++){
+		this.elements[i].addEventListener('type',fn,false);
 	}
 	return this;
 }
