@@ -48,6 +48,9 @@ IJquery.prototype.on=function(type,selector,fn){
 				var prefix=selector.charAt(0);
 				switch(prefix){
 					case'#':
+					if(e.target.id==selector.substring(1)){
+						fn.call(e.target);
+					}
 					break;
 					case'.':
 						if(e.target.className==selector.substring(1)){
@@ -61,12 +64,37 @@ IJquery.prototype.on=function(type,selector,fn){
 		}
 
 	} else if(selector && typeof selector=='function'){
-		 fn = selector;
-	}
+				 fn = selector;
 	for(var i=0; i<this.elements.length;i++){
 		this.elements[i].addEventListener('type',fn,false);
 	}
+	}
 	return this;
+}
+function getStyle(elem,prop){
+	if (elem.currentStyle) {//IE
+		return elem.currentStyle[prop];
+	}else{
+		return getComputedStyle(elem,null)[prop];
+	}
+}
+IJquery.prototype.css=function(propertyname,value){
+	if(value){
+		for(var i=0;i<this.elements.length;i++){
+			this.elements[i].style[propertyname]=value;
+		}
+	else{
+			if (typeof propertyname=='string') {
+				return getStyle(this.elements[0],propertyname);
+			}else{
+				for(var p as propertyname){
+					for(var i=0;i<this.elements.length;i++){
+						this.elements[i].style[p]=propertyname[p];
+					}
+				}
+			}
+		}
+	}
 }
 function $(arg){
 	return new IJquery(arg);
