@@ -122,6 +122,26 @@ IJquery.prototype.css=function(propertyname,value){
 	}
 	
 }
+IJquery.prototype.offset=function(coordinates){
+	if(coordinates){
+		for(var i=0;i<this.elements.length;i++){
+			setStyle(this.elements[i],'left',coordinates.left);
+			setStyle(this.elements[i],'top',coordinates.top);
+		}
+	}else{
+		var elem=this.elements[0];
+		var iTop=iLeft=0;
+		do{
+			iTop=elem.offsetTop;
+			iLeft=elem.offsetLeft;
+			elem=elem.offsetparent;
+		}while(elem);
+		return {
+			left:iLeft,
+			top:iTop
+		};
+	}
+}
 function $(arg){
 	return new IJquery(arg);
 	}
