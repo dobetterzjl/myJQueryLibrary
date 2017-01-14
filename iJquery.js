@@ -120,11 +120,15 @@ IJquery.prototype.css=function(propertyname,value){
 			}
 		}
 	}
-	
+	return this;	
 }
 IJquery.prototype.offset=function(coordinates){
 	if(coordinates){
 		for(var i=0;i<this.elements.length;i++){
+			var position=getStyle(this.elements[i],position);
+			if(position=="static"){
+				this.elements[i].style.position="relative";
+			}
 			setStyle(this.elements[i],'left',coordinates.left);
 			setStyle(this.elements[i],'top',coordinates.top);
 		}
@@ -141,7 +145,15 @@ IJquery.prototype.offset=function(coordinates){
 			top:iTop
 		};
 	}
+	return this;
 }
+	IJquery.prototype.hover=function(fn1,fn2){
+		for (var i = 0; i < this.elements.length; i++) {
+			this.elements[i].addEventListener('mouseover',fn1,false);
+			this.elements[i].addEventListener('mouseout',fn2,false);
+		}
+		return this;
+	}
 function $(arg){
 	return new IJquery(arg);
 	}
