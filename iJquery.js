@@ -78,6 +78,30 @@ function getStyle(elem,prop){
 		return getComputedStyle(elem,null)[prop];
 	}
 }
+function setStyle(elem,attr,value){
+	switch(attr){
+		case 'width':
+		case 'height':
+		case 'padding':
+		case 'paddingLeft':
+		case 'paddingRight':
+		case 'paddingTop':
+		case 'paddingBottom':
+		value=/\%/.test(attr)?value:parseInt(Math.max(value,0))+'px';
+		break;
+		case 'top':
+		case 'left':
+		case 'right':
+		case 'bottom':
+		case 'margin':
+		case 'marginLeft':
+		case 'marginRight':
+		case 'marginTop':
+		case 'marginBottom':
+		value=/\%/.test(value)?value:parseInt(value)+'px';
+		break;
+	}
+}
 IJquery.prototype.css=function(propertyname,value){
 	if(value){
 		for(var i=0;i<this.elements.length;i++){
@@ -89,12 +113,14 @@ IJquery.prototype.css=function(propertyname,value){
 			}else{
 				for(var p as propertyname){
 					for(var i=0;i<this.elements.length;i++){
-						this.elements[i].style[p]=propertyname[p];
+						// this.elements[i].style[p]=propertyname[p];
+						setStyle(this.elements[i],p,propertyname[p]);
 					}
 				}
 			}
 		}
 	}
+	
 }
 function $(arg){
 	return new IJquery(arg);
