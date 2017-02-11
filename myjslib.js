@@ -67,3 +67,9 @@ function css(elem,attr,value){
 		}
 	}
 }
+function addClass(elem,className){
+	var re=new RegExp('\\b'+className +'\\b','g');
+	if(!re.text(elem.className)){
+		elem.className+=""+className;
+	}
+}
