@@ -21,3 +21,49 @@ function val(elem,valu){
 		return elem.value;
 	}
 }
+function getStyle(elem,prop){
+	if(elem.currentStyle){//ie
+		return elem.currentStyle[prop];
+	}
+	else{
+		return getComputedStyle(elem,null)[prop];
+	}
+}
+function setStyle(elem,attr,value){
+	switch(attr){
+		case 'width':
+		case 'height':
+		case 'padding':
+		case 'paddingLeft':
+		case 'paddingRight':
+		case 'paddingTop':
+		case 'paddingBottom':
+		value=/\%/.test(attr)?value:parseInt(Math.max(value,0))+'px';
+		break;
+		case 'top':
+		case 'left':
+		case 'right':
+		case 'bottom':
+		case 'margin':
+		case 'marginLeft':
+		case 'marginRight':
+		case 'marginTop':
+		case 'marginBottom':
+		value=/\%/.test(value)?value:parseInt(value)+'px';
+		break;
+	}
+}
+function css(elem,attr,value){
+	if(value){
+		setStyle(elem,attr,value);
+	}else{
+		if(typeof attr =="string"){
+			return getStyle(elem,attr);
+		}else{
+			var obj=attr;
+			for (var p in obj){
+				setStyle(elem,p,obj[p]);
+			}
+		}
+	}
+}
