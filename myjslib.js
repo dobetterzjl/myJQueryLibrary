@@ -68,8 +68,17 @@ function css(elem,attr,value){
 	}
 }
 function addClass(elem,className){
-	var re=new RegExp('\\b'+className +'\\b','g');
-	if(!re.text(elem.className)){
+	var re = new RegExp('\\b'+className +'\\b','g');
+	if(!re.test(elem.className)){
 		elem.className+=""+className;
 	}
+}
+function trim(str){
+	return str.replace(/^\s+|\s+$/g,"");
+}
+function removeClass(elem,className){
+	var re = new RegExp('\\b'+className+'\\b','g');
+	if(re.test(elem.className)){
+		elem.className=trim(elem.className.replace(re,""));
+	} 
 }
