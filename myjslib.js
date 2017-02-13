@@ -88,3 +88,9 @@ function getWidth(elem){
 function getHeight(elem){
 		return parseInt(getStyle(elem,'height'));
 }
+function WindowWidth(){
+	var de= document.documentElement;
+	return self.innerWidth//标准浏览器
+	||(de && de.clientWidth)
+	|| document.body.clientWidth;
+}
