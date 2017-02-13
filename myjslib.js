@@ -38,7 +38,7 @@ function setStyle(elem,attr,value){
 		case 'paddingRight':
 		case 'paddingTop':
 		case 'paddingBottom':
-		value=/\%/.test(attr)?value:parseInt(Math.max(value,0))+'px';
+	 value=/\%/.test(attr)?value:parseInt(Math.max(value,0))+'px';
 		break;
 		case 'top':
 		case 'left':
@@ -49,7 +49,7 @@ function setStyle(elem,attr,value){
 		case 'marginRight':
 		case 'marginTop':
 		case 'marginBottom':
-		value=/\%/.test(value)?value:parseInt(value)+'px';
+	 value=/\%/.test(value)?value:parseInt(value)+'px';
 		break;
 	}
 }
@@ -81,4 +81,10 @@ function removeClass(elem,className){
 	if(re.test(elem.className)){
 		elem.className=trim(elem.className.replace(re,""));
 	} 
+}
+function getWidth(elem){
+		return parseInt(getStyle(elem,'width'));
+}
+function getHeight(elem){
+		return parseInt(getStyle(elem,'height'));
 }
