@@ -94,3 +94,7 @@ function WindowWidth(){
 	||(de && de.clientWidth)
 	|| document.body.clientWidth;
 }
+function WindowHeight(){
+	var de=document.documentElement;
+	return self.innerHeight|| (de&&de.clientHeight)||document.body.clientHeight;
+} 
