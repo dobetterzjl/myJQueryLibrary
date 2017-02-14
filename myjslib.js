@@ -104,3 +104,16 @@ function pageWidth(){
 function pageHeight(){
 	return document.body.scrollHeight;
 }
+function resetCss(elem,prop){
+	var old={};
+	for(var i in prop){
+		old[i]=elem.style[i];
+		elem.style[i]=prop[i];
+	}
+	return old;
+}
+function restoreCss(elem,prop){
+	for(var i in prop){
+		elem.style[i]=prop[i];
+	}
+}
