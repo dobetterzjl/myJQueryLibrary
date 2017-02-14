@@ -131,3 +131,17 @@ function fullHeight(elem){
 		return h;
 	}
 }
+function fullWidth(elem){
+	if (getStyle(elem,'display')!='none') {
+		return elem.offsetWidth||getWidth(elem);
+	}else{
+		var old=resetCss(elem,{
+			display:'block',
+			visilibility:'hidden',
+			position:'absolute'
+		});
+		var w = elem.clientWidth||getWidth(elem);
+		restoreCss(elem,old);
+		return w;
+	}
+}
