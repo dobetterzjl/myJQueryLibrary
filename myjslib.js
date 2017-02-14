@@ -98,3 +98,9 @@ function WindowHeight(){
 	var de=document.documentElement;
 	return self.innerHeight|| (de&&de.clientHeight)||document.body.clientHeight;
 } 
+function pageWidth(){
+	return document.body.scrollWidth;
+}
+function pageHeight(){
+	return document.body.scrollHeight;
+}
