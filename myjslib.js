@@ -117,3 +117,17 @@ function restoreCss(elem,prop){
 		elem.style[i]=prop[i];
 	}
 }
+function fullHeight(elem){
+	if (getStyle(elem,'display')!='none') {
+		return elem.offsetHeight||getHeight(elem);
+	}else{
+		var old=resetCss(elem,{
+			display:"block",
+			visilibility:"hidden",
+			position:"absolute"
+		});
+		var h=elem.clientHeight||getHeight(elem);
+		restoreCss(elem,old);
+		return h;
+	}
+}
