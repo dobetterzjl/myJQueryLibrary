@@ -171,3 +171,14 @@ function posX(elem){
 function posY(elem){
 	return parseInt(getStyle(elem,"top"));
 }
+//取到相对于父元素的距离
+function parentX(elem){
+	return elem.parentNode==elem.offsetParent
+	?elem.offsetLeft
+	:pageX(elem)-pageX(elem.parentNode);
+}
+function parentY(elem){
+	return elem.parentNode==elem.offsetParent
+	?elem.offsetTop
+	:pageY(elem)-pageY(elem.parentNode);
+}
