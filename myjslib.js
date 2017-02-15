@@ -182,3 +182,36 @@ function parentY(elem){
 	?elem.offsetTop
 	:pageY(elem)-pageY(elem.parentNode);
 }
+//取到鼠标点击位置距页面值
+function getX(e){
+	e=e||window.event;
+	return e.pageX||e.clientX + document.body.scrollLeft||0;
+	//pageX取到鼠标点击位置距页面值，e.clientX 距离浏览器位置，
+	//document.body.scrollLeft 滚动条滚出左边距离
+}
+function getY(e){
+	e=e||window.event;
+	return e.pageY||e.clientY + document.body.scrollTop||0;
+}
+function addX(elem,pos){
+	setX(posX(elem) + pos); 
+}
+function addY(elem,pos){
+	setX(posY(elem) + pos); 
+}
+//滚动条滚出页面距离
+function scrollX(){
+	var de = document.documentElement;
+	return self.pageXOffset||(de && de.scrollLeft)||document.body.scrollLeft;
+}
+function scrollY(){
+	var de = document.documentElement;
+	return self.pageYOffset||(de && de.scrollTop)||document.body.scrollTop;
+}
+//相对于目标元距离
+function getElementX(elem){
+	return elem.layerX || window.event.offsetX;
+}
+function getElementY(elem){
+	return elem.layerY || window.event.offsetY;
+}
