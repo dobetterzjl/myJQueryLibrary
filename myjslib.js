@@ -145,3 +145,21 @@ function fullWidth(elem){
 		return w;
 	}
 }
+// 相对于浏览器取到X值
+function pageX(elem){
+	var p=0;
+	while(elem.offsetParent){
+		p += elem.offsetLeft;
+		elem= elem.offsetParent;
+	}
+	return p;
+}
+//相对于浏览器取到Y值
+function pageY(elem){
+	var p =0;
+	while(elem.offsetParent){
+		p += elem.offsetLeft;
+		elem = elem.offsetParent;
+	}
+	return p;
+}
