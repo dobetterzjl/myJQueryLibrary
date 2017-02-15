@@ -163,3 +163,11 @@ function pageY(elem){
 	}
 	return p;
 }
+//取到本身的left值
+function posX(elem){
+	return parseInt(getStyle(elem,"left"));
+}
+//取到本身的top值
+function posY(elem){
+	return parseInt(getStyle(elem,"top"));
+}
