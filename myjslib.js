@@ -149,6 +149,7 @@ function fullWidth(elem){
 function pageX(elem){
 	var p=0;
 	while(elem.offsetParent){
+		//offsetParent:
 		p += elem.offsetLeft;
 		elem= elem.offsetParent;
 	}
@@ -157,8 +158,8 @@ function pageX(elem){
 //相对于浏览器取到Y值
 function pageY(elem){
 	var p =0;
-	while(elem.offsetParent){
-		p += elem.offsetLeft;
+	while(elem.offsetParent){//offsetParent:返回已经定位父元素，如果没有返回html
+		p += elem.offsetTop;
 		elem = elem.offsetParent;
 	}
 	return p;
@@ -214,4 +215,18 @@ function getElementX(elem){
 }
 function getElementY(elem){
 	return elem.layerY || window.event.offsetY;
+}
+function remove(elem){
+	elem.parentNode.removeChild(elem);
+}
+function empty(elem){
+	elem.innerHTML="";
+}
+function text(elem){
+	var t="";
+	elem=elem.childNodes||elem;
+	for(var i=0;i<elem.length;i++){
+		t+= elem[i].nodeType!=1?elem.nodeValue:text(elem[j].childNodes);
+	}
+	return t;
 }
