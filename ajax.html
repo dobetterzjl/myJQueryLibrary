@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+//创建xhr对象
+	var xmlHttp;
+	if (window.XMLHttpRequest) {
+		xmlHttp = new XMLHttpRequest();
+	}else{
+		xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+//发送请求
+	xmlHttp.open('GET','serve.php?name=lisi',true);
+	xmlHttp.send();
+	xmlHttp.onreadystatechange=function(){
+		if (xmlHttp.readyState ==4 && xmlHttp.status==200) {
+			console.log(xmlHttp.responseText);
+		}
+	};
+</script>
+</body>
+</html>
