@@ -230,3 +230,47 @@ function text(elem){
 	}
 	return t;
 }
+//调用 ajax({
+// 	method:'post',
+// 	url:""
+// 	data:{ 
+// 		name:'aa',
+// 		age:34
+// 	},
+	// callback:function(data){
+
+	// }
+// 	dataType:'text'
+
+// });
+function ajax(proem){
+//创建xhr对象
+	var xmlHttp;
+	if (window.XMLHttpRequest) {
+		xmlHttp = new XMLHttpRequest();
+	}else{
+		xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+//发送请求
+	for( var p in proem){
+		var dataStr += p+"="+proem.data[p] +"&";
+	}
+	dataStr = dataStr.subString(0,dataStr.length-1);
+	if(proem.method=='GET'){
+	xmlHttp.open(proem.method,proem.url+"?"+dataStr,true);
+	xmlHttp.send();
+	}else{
+		xmlHttp.open(proem.method,proem.url,true);
+		xmlHttp.setRequestHeader("Content-Type",application/x-www-form-urlencoded);
+		xmlHttp.send(dataStr);
+	}
+	xmlHttp.onreadystatechange=function(){
+		if (xmlHttp.readyState ==4 && xmlHttp.status==200) {
+			var callbackValue = xmlHttp.responseText;
+			if (callbackValue=="json") {
+				callbackValue=JSON.prase(callbackValue)
+			}
+			proem.callback&& proem.callback(callbackValue);
+		}
+	};
+}
