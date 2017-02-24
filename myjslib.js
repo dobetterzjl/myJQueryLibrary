@@ -274,3 +274,7 @@ function ajax(proem){
 		}
 	};
 }
+	function isArray(arg){
+		return typeof arg ==="object" &&
+		 Object.prototype.toString.call(arg) ==="[object Array]";
+	}
