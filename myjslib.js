@@ -293,3 +293,15 @@ function unique(arr){
 		}
 		return rs;
 	}
+	//数组去重二（以对象方式）
+	function unique(arr){
+		var rs =[];
+		var obj={};
+		for(var i=0;i<arr.length;i++){
+			if (!obj[arr[i]]) {
+				obj[arr[i]]=1;
+				rs.push(arr[i]);
+			}
+		}
+		return rs;
+	}
