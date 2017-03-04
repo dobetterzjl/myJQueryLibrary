@@ -305,3 +305,15 @@ function unique(arr){
 		}
 		return rs;
 	}
+	//ParseQueryString
+	function ParseQueryString(url){
+		var outPut ={};
+		var arr = url.split('?');
+		if(arr.length<=1) return outPut;
+		arr =arr[1].split('&');
+		for(var i =0;i<arr.length;i++){
+			var a =arr[i].split('=');
+			outPut[a[0]]=a[1]
+		}
+		return outPut;
+	}
