@@ -278,3 +278,18 @@ function ajax(proem){
 		return typeof arg ==="object" &&
 		 Object.prototype.toString.call(arg) ==="[object Array]";
 	}
+//数组去重
+function unique(arr){
+		var rs =[arr[0]];
+		for(var i=1;i<arr.length;i++){
+			for(var j=0;j<rs.length;j++){
+				if(arr[i]==rs[j]){
+					break;
+				}
+			}
+			if (j==rs.length) {
+				rs.push(arr[i]);
+			}
+		}
+		return rs;
+	}
