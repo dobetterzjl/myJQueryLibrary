@@ -317,3 +317,14 @@ function unique(arr){
 		}
 		return outPut;
 	}
+	//parseQueryString函数，利用了正则表达式
+	function parseQueryString1(url){
+		var outPut ={};
+		var re = /\w+=[^&]+/g;
+		var arr = url.match(re);
+		for(var i=0;i<arr.length;i++){
+			var a = arr[i].split('=');
+			outPut[a[0]]=a[1]
+		}
+		return outPut;
+	}
