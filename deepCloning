@@ -6,3 +6,10 @@ function clone(obj){
   }
   return o;
 }
+
+//方法二:
+function clone(obj){
+  var str = JSON.stringify(obj);
+  var cObj = JSON.parse(str);
+  return cObj;
+}
